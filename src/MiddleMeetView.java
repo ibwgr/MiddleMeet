@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class MiddleMeetView extends JFrame {
     private JButton button;
-    private JTextField anzeige;
+    private JTextField content;
 
     public MiddleMeetView() {
 
@@ -41,11 +41,7 @@ public class MiddleMeetView extends JFrame {
         land2.setToolTipText("Land");
 
         JLabel LResult = new JLabel("Ergebnis");
-        anzeige = new JTextField();
-
-        /*
-
-         */
+        content = new JTextField();
 
 
         button = new JButton("Berechne MiddleMeet");
@@ -63,7 +59,7 @@ public class MiddleMeetView extends JFrame {
 
 
         //Properties
-        LResult.setFont(new Font ("Default", Font.BOLD, 20));
+        LResult.setFont(new Font ("Default", Font.BOLD, 18));
 
         F.setLayout(B);
         west.setLayout(G);
@@ -76,7 +72,7 @@ public class MiddleMeetView extends JFrame {
         west.add(Box.createVerticalStrut(20));
         west.add(new JSeparator(SwingConstants.HORIZONTAL));
         west.add(LResult);
-        west.add(anzeige);
+        west.add(content);
         west.add(new JSeparator(SwingConstants.HORIZONTAL));
         west.add(button);
         center.add(L3);
@@ -93,7 +89,7 @@ public class MiddleMeetView extends JFrame {
     }
 
     //Manipulate view with new content
-    public void setText(String text){
-        anzeige.setText(text);
+    public void setView(String text){
+        content.setText(text);
     }
 }

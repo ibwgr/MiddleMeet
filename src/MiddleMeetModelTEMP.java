@@ -1,11 +1,11 @@
 
-public class MiddleMeetModel {
+public class MiddleMeetModelTEMP {
 
     private String meetpoint;
     public String km;
     public String time;
 
-    public MiddleMeetModel(){
+    public MiddleMeetModelTEMP(){
 
         km = "25";
         time = "48min";
