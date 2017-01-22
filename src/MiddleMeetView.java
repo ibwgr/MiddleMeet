@@ -92,4 +92,6 @@ public class MiddleMeetView extends JFrame {
     public void setView(String text){
         content.setText(text);
     }
+
+
 }

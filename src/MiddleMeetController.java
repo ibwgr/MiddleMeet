@@ -6,42 +6,41 @@ import java.awt.event.ActionListener;
 public class MiddleMeetController {
 
 
-
-        private MiddleMeetView mv;
-        private MiddleMeetModelTEMP mm;
-        private ActionListener actionListener;
-
-
-         /** Konstruktor
-         *
-         * @param mv - Referenz auf die Repraesentation
-         * @param mm - Referenz auf den Controller
-         *
-*/
+    private MiddleMeetView mv;
+    private MiddleMeetModelTEMP mm;
+    private ActionListener actionListener;
+    private String text ="blabla";
 
 
-        public MiddleMeetController(MiddleMeetView mv, MiddleMeetModelTEMP mm) {
-            this.mv = mv;
-            this.mm = mm;
-        }
 
-        public void control(){
-            actionListener = new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
+    /**
+     * Konstruktor
+     *
+     * @param mv - Referenz auf die Repraesentation
+     * @param mm - Referenz auf den Controller
+     */
 
-                    mv.setView("blabla");
 
-                    calculate();
-                }
-            };
-            mv.getButton().addActionListener(actionListener);
-            System.out.println("well done");
+    public MiddleMeetController(MiddleMeetView mv, MiddleMeetModelTEMP mm) {
+        this.mv = mv;
+        this.mm = mm;
+    }
+
+    public void control() {
+        actionListener = new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+                mv.setView("blabla");
+            }
+        };
+        mv.getButton().addActionListener(actionListener);
+        System.out.println("well done");
 
     }
 
     private void calculate() {
         mm.km();
-        mv.setView("blablabblaaaa");
+        mv.setView(text);
         System.out.println("blablaaa");
     }
 }
