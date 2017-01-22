@@ -7,6 +7,8 @@ import java.io.File;
 import java.io.IOException;
 
 public class MiddleMeetView extends JFrame {
+    private JButton button;
+    private JTextField anzeige;
 
     public MiddleMeetView() {
 
@@ -15,7 +17,10 @@ public class MiddleMeetView extends JFrame {
         final String ERROR = "/img/error.jpg";
         final String MAP = "/img/map.jpg";
 
-        img = MAP;
+
+
+        //Switch Case einbauen
+        img = ERROR;
 
 
         //Objects
@@ -36,9 +41,14 @@ public class MiddleMeetView extends JFrame {
         land2.setToolTipText("Land");
 
         JLabel LResult = new JLabel("Ergebnis");
+        anzeige = new JTextField();
+
+        /*
+
+         */
 
 
-        JButton calculate = new JButton("Berechne MiddleMeet");
+        button = new JButton("Berechne MiddleMeet");
 
         //Set Image Background
 
@@ -66,8 +76,9 @@ public class MiddleMeetView extends JFrame {
         west.add(Box.createVerticalStrut(20));
         west.add(new JSeparator(SwingConstants.HORIZONTAL));
         west.add(LResult);
+        west.add(anzeige);
         west.add(new JSeparator(SwingConstants.HORIZONTAL));
-        west.add(calculate);
+        west.add(button);
         center.add(L3);
 
         //Margins
@@ -77,11 +88,12 @@ public class MiddleMeetView extends JFrame {
 
     }
 
-    public static void main(String[] args) {
-        MiddleMeetView m = new MiddleMeetView();
-        m.setTitle("MiddleMeet");
-        m.setSize(840, 680);
-        m.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        m.setVisible(true);
+    public JButton getButton(){
+        return button;
+    }
+
+    //Manipulate view with new content
+    public void setText(String text){
+        anzeige.setText(text);
     }
 }
