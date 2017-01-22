@@ -1,6 +1,5 @@
 
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -9,7 +8,7 @@ public class MiddleMeetController {
 
 
         private MiddleMeetView mv;
-        private MiddleMeetModel mm;
+        private MiddleMeetModelTEMP mm;
         private ActionListener actionListener;
 
 
@@ -21,7 +20,7 @@ public class MiddleMeetController {
 */
 
 
-        public MiddleMeetController(MiddleMeetView mv, MiddleMeetModel mm) {
+        public MiddleMeetController(MiddleMeetView mv, MiddleMeetModelTEMP mm) {
             this.mv = mv;
             this.mm = mm;
         }
@@ -29,6 +28,8 @@ public class MiddleMeetController {
         public void control(){
             actionListener = new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
+
+                    mv.setView("blabla");
 
                     calculate();
                 }
@@ -40,7 +41,8 @@ public class MiddleMeetController {
 
     private void calculate() {
         mm.km();
-        mv.setText(Integer.toString(Integer.parseInt(mm.time())));
+        mv.setView("blablabblaaaa");
+        System.out.println("blablaaa");
     }
 }
 
