@@ -18,7 +18,7 @@ public class Snapshoter {
                 + finish
                 + "&markers=color:green%7Clabel:M%7C"
                 + middle
-                + "&size=630x630&scale=2&maptype=roadmap"
+                + "&size=320x320&scale=2&maptype=roadmap"
                 +"&key="
                 +apiKey;
         String destinationFile = "src/img/snapshotGoogleMaps.jpg";

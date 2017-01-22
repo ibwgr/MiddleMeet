@@ -15,15 +15,16 @@ public class MiddleMeetView extends JFrame {
         String img;
         final String INTRO = "/img/intro.jpg";
         final String ERROR = "/img/error.jpg";
-        final String MAP = "/img/map.jpg";
+        final String MAP = "/img/snapshotGoogleMaps.jpg";
 
-        MiddleMeetModelTEMP mm = new MiddleMeetModelTEMP();
+        /*MiddleMeetModel mm = new MiddleMeetModel();
         MiddleMeetController mc = new MiddleMeetController(this, mm);
+        */
 
 
 
         //Switch Case einbauen
-        img = ERROR;
+        img = MAP;
 
 
         //Objects
@@ -47,7 +48,7 @@ public class MiddleMeetView extends JFrame {
         content = new JTextField();
 
 
-        button = new JButton("Berechne MiddleMeet", ();
+        button = new JButton("Berechne MiddleMeet");
 
         //Set Image Background
 

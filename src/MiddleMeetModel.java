@@ -13,8 +13,8 @@ public class MiddleMeetModel {
 
         String start = "Chur";
         String region1 = "Schweiz";
-        String finish = "Oslo";
-        String region2 = "Norwegen";
+        String finish = "Berlin";
+        String region2 = "Deutschland";
 
 
         //Umlaut parsen, damit der Https-Link zu Testzwecken genutzt werden kann
