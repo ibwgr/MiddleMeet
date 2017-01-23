@@ -33,6 +33,12 @@ public class MiddleMeetController {
             mm.calculateMeetpoint(start);
             mv.setMeetpoint(mm.getCalculatedMeetpoint());
 
+            mm.calculateKm(region1);
+            mv.setKm(mm.getCalculatedKm());
+
+            mm.calculateTime(finish);
+            mv.setTime(mm.getCalculatedTime());
+
             System.out.println(start);
             System.out.println(region1);
             System.out.println(finish);

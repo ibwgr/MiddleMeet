@@ -4,8 +4,8 @@
 public class MiddleMeetModelTest {
 
     private String calculatedMeetpoint;
-    private String calculationKm;
-    private String calculationTime;
+    private String calculatedKm;
+    private String calculatedTime;
 
 
     //********************   Meetpoint
@@ -16,6 +16,26 @@ public class MiddleMeetModelTest {
 
     public String getCalculatedMeetpoint(){
         return calculatedMeetpoint;
+    }
+
+    //********************   km
+
+    public void calculateKm(String region1) {
+        calculatedKm = region1 + " km";
+    }
+
+    public String getCalculatedKm(){
+        return calculatedKm;
+    }
+
+    //********************   Time
+
+    public void calculateTime(String finish) {
+        calculatedTime = finish + " time";
+    }
+
+    public String getCalculatedTime(){
+        return calculatedTime;
     }
 
 }

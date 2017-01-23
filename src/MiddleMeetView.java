@@ -16,8 +16,8 @@ public class MiddleMeetView extends JFrame {
     private JTextField region2 = new JTextField(20);
     private JLabel result = new JLabel("Ergebnis");
     private JTextField calculatedMeetpoint = new JTextField(20);
-    private JTextField km = new JTextField(20);
-    private JTextField time = new JTextField(20);
+    private JTextField calculatedKm = new JTextField(20);
+    private JTextField calculatedTime = new JTextField(20);
     private JButton calculateButton = new JButton("Berechne MiddleMeet");
 
 
@@ -64,8 +64,8 @@ public class MiddleMeetView extends JFrame {
         west.add(new JSeparator(SwingConstants.HORIZONTAL));
         west.add(result);
         west.add(calculatedMeetpoint);
-        west.add(km);
-        west.add(time);
+        west.add(calculatedKm);
+        west.add(calculatedTime);
         west.add(new JSeparator(SwingConstants.HORIZONTAL));
         west.add(calculateButton);
         center.add(L3);
@@ -93,21 +93,18 @@ public class MiddleMeetView extends JFrame {
         return region2.getText();
     }
 
-
+    //SETTER
     public void setMeetpoint(String meetpoint){
         calculatedMeetpoint.setText(meetpoint);
     }
 
-    public String getKm(){
-        return km.getText();
+    public void setKm(String km){
+        calculatedKm.setText(km);
     }
 
-    public String getTime(){
-        return time.getText();
+    public void setTime(String time){
+        calculatedTime.setText(time);
     }
-
-
-    //SETTER
 
 
 
