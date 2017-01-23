@@ -52,6 +52,9 @@ public class MiddleMeetView extends JFrame {
 
         //Properties
         result.setFont(new Font ("Default", Font.BOLD, 18));
+        calculatedMeetpoint.setEditable(false);
+        calculatedKm.setEditable(false);
+        calculatedTime.setEditable(false);
 
         //Elements added
         west.add(place1);
