@@ -7,6 +7,12 @@ import java.io.IOException;
 
 public class MiddleMeetModel {
 
+
+    private String halftime;
+    private String km;
+    private String time;
+
+
     public static void main(String[] args) {
 
         String apiKey = "AIzaSyDBzdyeHTvujz4KRSvwO5qsrZ-FTCpaNTk";          //Google Developers API-Key: AIzaSyDBzdyeHTvujz4KRSvwO5qsrZ-FTCpaNTk
@@ -106,6 +112,8 @@ public class MiddleMeetModel {
             e.printStackTrace();
         }
 
+
+
     }
 
 
@@ -119,6 +127,9 @@ public class MiddleMeetModel {
                 + "&key=" + apiKey;
         return urlString;
     }
+
+
+
 }
 
 

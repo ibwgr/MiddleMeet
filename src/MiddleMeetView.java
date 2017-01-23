@@ -1,14 +1,23 @@
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.BorderLayout;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.awt.event.ActionListener;
 
 public class MiddleMeetView extends JFrame {
-    private JButton button;
-    private JTextField content;
+
+    private JLabel place1 = new JLabel("Ort 1");
+    private JTextField start = new JTextField(20);
+    private JTextField region1 = new JTextField(20);
+    private JLabel place2 = new JLabel("Ort 2");
+    private JTextField finish = new JTextField(20);
+    private JTextField region2 = new JTextField(20);
+    private JLabel result = new JLabel("Ergebnis");
+    private JTextField meetpoint = new JTextField(20);
+    private JTextField km = new JTextField(20);
+    private JTextField time = new JTextField(20);
+    private JButton calculateButton = new JButton("Berechne MiddleMeet");
+
+
 
     public MiddleMeetView() {
 
@@ -30,9 +39,9 @@ public class MiddleMeetView extends JFrame {
         //Objects
         JPanel center = new JPanel();
         JPanel west = new JPanel();
-        JButton B1 = new JButton("OK");
 
-        JLabel L1 = new JLabel("Ort 1");
+
+       /* JLabel L1 = new JLabel("Ort 1");
         JTextField ort1 = new JTextField("",15);
         ort1.setToolTipText("Ort");
         JTextField land1 = new JTextField();
@@ -45,14 +54,14 @@ public class MiddleMeetView extends JFrame {
         land2.setToolTipText("Land");
 
         JLabel LResult = new JLabel("Ergebnis");
-        content = new JTextField();
+       // content = new JTextField();
 
 
-        button = new JButton("Berechne MiddleMeet");
+      //  button = new JButton("Berechne MiddleMeet");
 
         //Set Image Background
 
-
+*/
         ImageIcon background = new ImageIcon(getClass().getResource(img));
         JLabel L3 = new JLabel(background);
 
@@ -63,22 +72,24 @@ public class MiddleMeetView extends JFrame {
 
 
         //Properties
-        LResult.setFont(new Font ("Default", Font.BOLD, 18));
+        result.setFont(new Font ("Default", Font.BOLD, 18));
 
         F.setLayout(B);
         west.setLayout(G);
-        west.add(L1);
-        west.add(ort1);
-        west.add(land1);
-        west.add(L2);
-        west.add(ort2);
-        west.add(land2);
+        west.add(place1);
+        west.add(start);
+        west.add(region1);
+        west.add(place2);
+        west.add(finish);
+        west.add(region2);
         west.add(Box.createVerticalStrut(20));
         west.add(new JSeparator(SwingConstants.HORIZONTAL));
-        west.add(LResult);
-        west.add(content);
+        west.add(result);
+        west.add(meetpoint);
+        west.add(km);
+        west.add(time);
         west.add(new JSeparator(SwingConstants.HORIZONTAL));
-        west.add(button);
+        west.add(calculateButton);
         center.add(L3);
 
         //Margins
@@ -87,15 +98,51 @@ public class MiddleMeetView extends JFrame {
         add(center, B.CENTER);
 
     }
-
-    public JButton getButton(){
-        return button;
+    
+    public String getStart(){
+        return start.getText();
     }
 
-    //Manipulate view with new content
-    public void setView(String text){
-        content.setText(text);
+    public String getRegion1(){
+        return region1.getText();
     }
 
+    public String getFinish(){
+        return finish.getText();
+    }
+    
+    public String getRegion2(){
+        return region2.getText();
+    }
+
+    public String getMeetpoint(String solution){
+        return meetpoint.getText();
+    }
+
+    public String getKm(){
+        return km.getText();
+    }
+
+    public String getTime(){
+        return time.getText();
+    }
+
+
+    //SETTER
+    public void setCalcSolution(String solution) {
+        meetpoint.setText(solution);
+    }
+
+
+    void addCalculateListener(ActionListener listenForCalcButton) {
+
+        calculateButton.addActionListener(listenForCalcButton);
+    }
+
+    void displayErrorMessage(String errorMessage){
+
+        JOptionPane.showMessageDialog(this, errorMessage);
+
+    }
 
 }
