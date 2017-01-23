@@ -5,6 +5,9 @@ import java.awt.event.ActionListener;
 
 public class MiddleMeetView extends JFrame {
 
+    JPanel west, center;
+
+
     private JLabel place1 = new JLabel("Ort 1");
     private JTextField start = new JTextField(20);
     private JTextField region1 = new JTextField(20);
@@ -12,7 +15,7 @@ public class MiddleMeetView extends JFrame {
     private JTextField finish = new JTextField(20);
     private JTextField region2 = new JTextField(20);
     private JLabel result = new JLabel("Ergebnis");
-    private JTextField meetpoint = new JTextField(20);
+    private JTextField calculatedMeetpoint = new JTextField(20);
     private JTextField km = new JTextField(20);
     private JTextField time = new JTextField(20);
     private JButton calculateButton = new JButton("Berechne MiddleMeet");
@@ -21,61 +24,36 @@ public class MiddleMeetView extends JFrame {
 
     public MiddleMeetView() {
 
+        MiddleMeetModelTest mm = new MiddleMeetModelTest();
+        MiddleMeetController mc = new MiddleMeetController(this,mm);
+
+
+        //create panels
+        west = new JPanel(new GridLayout(15, 1));
+        center = new JPanel();
+
+        this.add(west, BorderLayout.WEST);
+        this.add(center, BorderLayout.CENTER);
+
+
+
         String img;
         final String INTRO = "/img/intro.jpg";
         final String ERROR = "/img/error.jpg";
         final String MAP = "/img/snapshotGoogleMaps.jpg";
-
-        /*MiddleMeetModel mm = new MiddleMeetModel();
-        MiddleMeetController mc = new MiddleMeetController(this, mm);
-        */
-
 
 
         //Switch Case einbauen
         img = MAP;
 
 
-        //Objects
-        JPanel center = new JPanel();
-        JPanel west = new JPanel();
-
-
-       /* JLabel L1 = new JLabel("Ort 1");
-        JTextField ort1 = new JTextField("",15);
-        ort1.setToolTipText("Ort");
-        JTextField land1 = new JTextField();
-        land1.setToolTipText("Land");
-
-        JLabel L2 = new JLabel("Ort 2");
-        JTextField ort2 = new JTextField();
-        ort2.setToolTipText("Ort");
-        JTextField land2 = new JTextField();
-        land2.setToolTipText("Land");
-
-        JLabel LResult = new JLabel("Ergebnis");
-       // content = new JTextField();
-
-
-      //  button = new JButton("Berechne MiddleMeet");
-
-        //Set Image Background
-
-*/
         ImageIcon background = new ImageIcon(getClass().getResource(img));
         JLabel L3 = new JLabel(background);
-
-
-        BorderLayout B = new BorderLayout();
-        GridLayout G = new GridLayout(15,0);
-        JFrame F = new JFrame();
-
 
         //Properties
         result.setFont(new Font ("Default", Font.BOLD, 18));
 
-        F.setLayout(B);
-        west.setLayout(G);
+        //Elements added
         west.add(place1);
         west.add(start);
         west.add(region1);
@@ -85,7 +63,7 @@ public class MiddleMeetView extends JFrame {
         west.add(Box.createVerticalStrut(20));
         west.add(new JSeparator(SwingConstants.HORIZONTAL));
         west.add(result);
-        west.add(meetpoint);
+        west.add(calculatedMeetpoint);
         west.add(km);
         west.add(time);
         west.add(new JSeparator(SwingConstants.HORIZONTAL));
@@ -94,12 +72,12 @@ public class MiddleMeetView extends JFrame {
 
         //Margins
         west.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
-        add(west, B.WEST);
-        add(center, B.CENTER);
+
 
     }
     
     public String getStart(){
+
         return start.getText();
     }
 
@@ -115,8 +93,9 @@ public class MiddleMeetView extends JFrame {
         return region2.getText();
     }
 
-    public String getMeetpoint(String solution){
-        return meetpoint.getText();
+
+    public void setMeetpoint(String meetpoint){
+        calculatedMeetpoint.setText(meetpoint);
     }
 
     public String getKm(){
@@ -129,9 +108,7 @@ public class MiddleMeetView extends JFrame {
 
 
     //SETTER
-    public void setCalcSolution(String solution) {
-        meetpoint.setText(solution);
-    }
+
 
 
     void addCalculateListener(ActionListener listenForCalcButton) {

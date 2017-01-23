@@ -5,8 +5,10 @@ import java.awt.event.ActionListener;
 
 
 public class MiddleMeetController {
+
     private MiddleMeetView mv;
     private MiddleMeetModelTest mm;
+
 
     public MiddleMeetController(MiddleMeetView mv, MiddleMeetModelTest mm) {
         this.mv = mv;
@@ -16,7 +18,6 @@ public class MiddleMeetController {
     }
 
     class CalculateListener implements ActionListener {
-
         public void actionPerformed(ActionEvent e) {
 
             String start;
@@ -24,19 +25,22 @@ public class MiddleMeetController {
             String finish;
             String region2;
 
-
             start = mv.getStart();
             region1 = mv.getRegion1();
             finish = mv.getFinish();
             region2 = mv.getRegion2();
 
-            mm.addCalculationTime(start, finish);
+            mm.calculateMeetpoint(start);
+            mv.setMeetpoint(mm.getCalculatedMeetpoint());
 
-            mv.setCalcSolution(mm.getCalculationMeedpoint());
+            System.out.println(start);
+            System.out.println(region1);
+            System.out.println(finish);
+            System.out.println(region2);
 
 
-
-            }
         }
     }
+}
+
 
