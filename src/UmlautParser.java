@@ -1,3 +1,6 @@
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
+
 /**
  * Created by Patrick Stoffel on 22.01.2017.
  */
@@ -14,9 +17,9 @@ public class UmlautParser {
                 .replace("ä", "ae");
 
         //ersetzte alle Grossbuchstaben, gefolgt von Kleinbuchstaben (Ä,Ö,Ü zu Ae,Oe,Ue) (z.B. Übung)
-        output = output.replace("Ü(?=[a-zäöü ])", "Ue")
-                .replace("Ö(?=[a-zäöü ])", "Oe")
-                .replace("Ä(?=[a-zäöü ])", "Ae");
+        output = output.replace("Ü?=[a-z]", "Ue")
+                .replace("Ö?=[a-z]", "Oe")
+                .replace("Ä?=[a-z]", "Ae");
 
         //ersetzte alle Grossbuchstaben, gefolgt von Grossbuchstaben (Ä,Ö,Ü zu AE,OE,UE)
         output = output.replace("Ü", "UE")
