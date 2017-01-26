@@ -13,5 +13,6 @@
     <orderEntry type="library" name="org.json:json:20160810" level="project" />
     <orderEntry type="library" name="org.apache.httpcomponents:httpcore:4.2.4" level="project" />
     <orderEntry type="library" name="com.google.android:android-test:2.1_r1" level="project" />
+    <orderEntry type="library" name="junit:junit:4.9" level="project" />
   </component>
 </module>

@@ -17,10 +17,10 @@ public class MiddleMeetModel {
 
         String apiKey = "AIzaSyDBzdyeHTvujz4KRSvwO5qsrZ-FTCpaNTk";          //Google Developers API-Key: AIzaSyDBzdyeHTvujz4KRSvwO5qsrZ-FTCpaNTk
 
-        String start = "Chur";
+        String start = "Mols";
         String region1 = "Schweiz";
-        String finish = "Berlin";
-        String region2 = "Deutschland";
+        String finish = "Oslo";
+        String region2 = "Norwegen";
 
 
         //Umlaut parsen, damit der Https-Link zu Testzwecken genutzt werden kann
@@ -32,7 +32,7 @@ public class MiddleMeetModel {
         String finishOhneUmlaut = umlautParser.replaceUmlaut(finish);
         String region2OhneUmlaut = umlautParser.replaceUmlaut(region2);
 
-        //System.out.println(calculateRoute(startOhneUmlaut, region1OhneUmlaut, finishOhneUmlaut, region2OhneUmlaut, apiKey));
+        System.out.println(calculateRoute(startOhneUmlaut, region1OhneUmlaut, finishOhneUmlaut, region2OhneUmlaut, apiKey));
 
 /*      //Adresse formatiert ausgeben mit geocoding-Methode
         Geocoding geocoding = new Geocoding();
