@@ -24,11 +24,15 @@ public class MiddleMeetController {
             String region1;
             String finish;
             String region2;
+            String status;
+            //String img;
 
             start = mv.getStart();
             region1 = mv.getRegion1();
             finish = mv.getFinish();
             region2 = mv.getRegion2();
+            status = mv.getStatus();
+            //img = mv.getStatus;
 
             mm.calculateMeetpoint(start);
             mv.setMeetpoint(mm.getCalculatedMeetpoint());
@@ -38,6 +42,9 @@ public class MiddleMeetController {
 
             mm.calculateTime(finish);
             mv.setTime(mm.getCalculatedTime());
+
+            /*mm.calculateStatus(status);
+            mv.setStatus(mm.getStatus());*/
 
             System.out.println(start);
             System.out.println(region1);

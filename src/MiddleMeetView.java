@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 
 public class MiddleMeetView extends JFrame {
 
+    //Constructor
+
     JPanel west, center;
 
 
@@ -19,10 +21,16 @@ public class MiddleMeetView extends JFrame {
     private JTextField calculatedKm = new JTextField(20);
     private JTextField calculatedTime = new JTextField(20);
     private JButton calculateButton = new JButton("Berechne MiddleMeet");
+    //private ImageIcon icon;
+    private String status;
+    private String calculatedStatus;
+
 
 
 
     public MiddleMeetView() {
+
+
 
         MiddleMeetModelTest mm = new MiddleMeetModelTest();
         MiddleMeetController mc = new MiddleMeetController(this,mm);
@@ -36,19 +44,31 @@ public class MiddleMeetView extends JFrame {
         this.add(center, BorderLayout.CENTER);
 
 
+        //String status = "dvdf";
 
-        String img;
-        final String INTRO = "/img/intro.jpg";
+
+        /*final String DEFAULT = "/img/intro.jpg";
         final String ERROR = "/img/error.jpg";
-        final String MAP = "/img/snapshotGoogleMaps.jpg";
+        final String OK = "/img/snapshotGoogleMaps.jpg";*/
 
 
         //Switch Case einbauen
-        img = MAP;
 
+        /*String img;*/
 
-        ImageIcon background = new ImageIcon(getClass().getResource(img));
+        /*final String INTRO = "/img/intro.jpg";
+        final String ERROR = "/img/error.jpg";
+        final String MAP = "/img/snapshotGoogleMaps.jpg";
+
+        img = MAP;*/
+
+        ImageIcon background = new ImageIcon(getClass().getResource(mm.getStatus()));
         JLabel L3 = new JLabel(background);
+
+
+       /* JLabel L3 = new JLabel();
+        L3.setIcon(icon);*/
+
 
         //Properties
         result.setFont(new Font ("Default", Font.BOLD, 18));
@@ -73,6 +93,8 @@ public class MiddleMeetView extends JFrame {
         west.add(calculateButton);
         center.add(L3);
 
+
+
         //Margins
         west.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 
@@ -96,6 +118,12 @@ public class MiddleMeetView extends JFrame {
         return region2.getText();
     }
 
+    public String getStatus(){
+        return status;
+    }
+
+
+
     //SETTER
     public void setMeetpoint(String meetpoint){
         calculatedMeetpoint.setText(meetpoint);
@@ -109,6 +137,10 @@ public class MiddleMeetView extends JFrame {
         calculatedTime.setText(time);
     }
 
+   public void setStatus(String status){
+        calculatedStatus = status;
+   }
+
 
 
     void addCalculateListener(ActionListener listenForCalcButton) {
@@ -121,5 +153,12 @@ public class MiddleMeetView extends JFrame {
         JOptionPane.showMessageDialog(this, errorMessage);
 
     }
+
+
+
+
+    //http://stackoverflow.com/questions/20411215/cannot-update-java-swing-imageicon
+
+
 
 }
