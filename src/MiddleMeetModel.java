@@ -2,8 +2,7 @@
  * Created by Patrick Stoffel on 07.01.2017.
  */
 
-import org.json.*;
-import java.io.IOException;
+import java.util.DoubleSummaryStatistics;
 
 public class MiddleMeetModel {
 
@@ -12,15 +11,14 @@ public class MiddleMeetModel {
     private String km;
     private String time;
 
-
     public static void main(String[] args) {
 
         String apiKey = "AIzaSyDBzdyeHTvujz4KRSvwO5qsrZ-FTCpaNTk";          //Google Developers API-Key: AIzaSyDBzdyeHTvujz4KRSvwO5qsrZ-FTCpaNTk
 
         String start = "Mols";
         String region1 = "Schweiz";
-        String finish = "Oslo";
-        String region2 = "Norwegen";
+        String finish = "Zuerich";
+        String region2 = "Schweiz";
 
 
         //Umlaut parsen, damit der Https-Link zu Testzwecken genutzt werden kann
@@ -32,25 +30,39 @@ public class MiddleMeetModel {
         String finishOhneUmlaut = umlautParser.replaceUmlaut(finish);
         String region2OhneUmlaut = umlautParser.replaceUmlaut(region2);
 
-        System.out.println(calculateRoute(startOhneUmlaut, region1OhneUmlaut, finishOhneUmlaut, region2OhneUmlaut, apiKey));
+        //System.out.println(calculateRoute(startOhneUmlaut, region1OhneUmlaut, finishOhneUmlaut, region2OhneUmlaut, apiKey));
 
-/*      //Adresse formatiert ausgeben mit geocoding-Methode
+        System.out.println(getDistance(start, region1, finish, region2, apiKey));
+
+
+        //Adresse formatiert ausgeben mit geocoding-Methode
         Geocoding geocoding = new Geocoding();
 
-        String startResult = new String();
-        String finishResult = new String();
-
         try {
-            startResult = geocoding.geocoding(start, apiKey);
+            Double[] geocodingReslutStart = geocoding.geocoding(start, region1, apiKey);
+            Double latStart = (Double) geocodingReslutStart [0];
+            Double lngStart = (Double) geocodingReslutStart [1];
+
+            Double[] geocodingReslutFinish = geocoding.geocoding(finish, region2, apiKey);
+            Double latFinish = (Double) geocodingReslutFinish [0];
+            Double lngFinish = (Double) geocodingReslutFinish [1];
+
+            System.out.println(latStart);
+            System.out.println(lngStart);
+            System.out.println(latFinish);
+            System.out.println(lngFinish);
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        try {
-            finishResult = geocoding.geocoding(finish, apiKey);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
+
+
+    }
+
+
+        /*
 
         //Die url von Google Maps mit den Routendaten erstellen, damit anschliessend das JSON geparsed werden kann
         String urlForJSONParser = (calculateRoute(start, region1, finish, region2, apiKey));
@@ -111,14 +123,12 @@ public class MiddleMeetModel {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }*/
 
 
+        //Anfrage für Route an Google Maps API mit eingegebenem Start- und Ziel-Ort
 
-    }
-
-
-    //Anfrage für Route an Google Maps API mit eingegebenem Start- und Ziel-Ort
-    public static String calculateRoute(String start, String region1, String finish, String region2, String apiKey) {
+/*    public static String calculateRoute(String start, String region1, String finish, String region2, String apiKey) {
         String urlString = "https://maps.googleapis.com/maps/api/directions/json"
                 + "?origin=" + start
                 + "&region=" + region1
@@ -126,10 +136,17 @@ public class MiddleMeetModel {
                 + "&region=" + region2
                 + "&key=" + apiKey;
         return urlString;
+    }*/
+
+    public static String getDistance(String start, String region1, String finish, String region2, String apiKey) {
+        String urlString = "https://maps.googleapis.com/maps/api/distancematrix/json"
+                + "?origins=" +start
+                + "&region=" +region1
+                + "&destinations=" +finish
+                + "&region=" +region2
+                + "&key=" +apiKey;
+        return urlString;
     }
-
-
-
 }
 
 
