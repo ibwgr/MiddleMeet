@@ -24,27 +24,34 @@ public class MiddleMeetController {
             String region1;
             String finish;
             String region2;
-            String status;
+            ImageIcon icon;
+            final String apiKey = "AIzaSyDBzdyeHTvujz4KRSvwO5qsrZ-FTCpaNTk";
+            //String status;
             //String img;
 
             start = mv.getStart();
             region1 = mv.getRegion1();
             finish = mv.getFinish();
             region2 = mv.getRegion2();
-            status = mv.getStatus();
+            icon = mm.getIcon(mm.getStatus());
+            mv.setIcon(icon);
+            System.out.println(icon);
             //img = mv.getStatus;
 
-            mm.calculateMeetpoint(start);
+            mm.getDistance(start, region1, finish, region2, apiKey);
             mv.setMeetpoint(mm.getCalculatedMeetpoint());
 
-            mm.calculateKm(region1);
+            //mm.calculateKm(region1);
             mv.setKm(mm.getCalculatedKm());
 
-            mm.calculateTime(finish);
+
+
+           // mm.calculateTime(finish);
             mv.setTime(mm.getCalculatedTime());
 
-            /*mm.calculateStatus(status);
-            mv.setStatus(mm.getStatus());*/
+
+            //mv.setImgPath(mm.chooseImage(status));
+
 
             System.out.println(start);
             System.out.println(region1);
@@ -52,8 +59,10 @@ public class MiddleMeetController {
             System.out.println(region2);
 
 
-        }
+
+
     }
+}
 }
 
 

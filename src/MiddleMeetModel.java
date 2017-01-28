@@ -1,6 +1,7 @@
 /**
  * Created by Patrick Stoffel on 07.01.2017.
- */
+ *//*
+
 
 import java.util.DoubleSummaryStatistics;
 
@@ -62,7 +63,8 @@ public class MiddleMeetModel {
     }
 
 
-        /*
+        */
+/*
 
         //Die url von Google Maps mit den Routendaten erstellen, damit anschliessend das JSON geparsed werden kann
         String urlForJSONParser = (calculateRoute(start, region1, finish, region2, apiKey));
@@ -123,11 +125,13 @@ public class MiddleMeetModel {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }*/
+    }*//*
+
 
 
         //Anfrage für Route an Google Maps API mit eingegebenem Start- und Ziel-Ort
 
+*/
 /*    public static String calculateRoute(String start, String region1, String finish, String region2, String apiKey) {
         String urlString = "https://maps.googleapis.com/maps/api/directions/json"
                 + "?origin=" + start
@@ -136,7 +140,8 @@ public class MiddleMeetModel {
                 + "&region=" + region2
                 + "&key=" + apiKey;
         return urlString;
-    }*/
+    }*//*
+
 
     public static String getDistance(String start, String region1, String finish, String region2, String apiKey) {
         String urlString = "https://maps.googleapis.com/maps/api/distancematrix/json"
@@ -150,3 +155,4 @@ public class MiddleMeetModel {
 }
 
 
+*/
