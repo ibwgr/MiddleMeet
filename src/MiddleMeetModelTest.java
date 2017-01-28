@@ -178,7 +178,6 @@ public class MiddleMeetModelTest  {
                 break;
             default: icon = new ImageIcon(getClass().getResource("/img/intro.jpg"));
                 break;
-
         }
         return icon;
     }
@@ -198,10 +197,6 @@ public class MiddleMeetModelTest  {
     public String getStatus() {
         return status;
     }
-
-   /* public String getImgPath() {
-        return imgPath;
-    }*/
 
 }
 
