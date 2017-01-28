@@ -3,6 +3,9 @@
  */
 
 import java.io.*;
+import java.net.URL;
+import java.util.Scanner;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -21,12 +24,11 @@ public class JSONParser {
 
     //Konstruktor
     public JSONParser() {
-
     }
 
-    public JSONObject getJSONFromUrl(String url) {
+    public JSONObject getJSONFromUrl(String url) throws IOException {
 
-        //HTTP request ausführen
+/*        //HTTP request ausführen
         try {
             //DefaultHttpClient
             DefaultHttpClient httpClient = new DefaultHttpClient();
@@ -46,12 +48,11 @@ public class JSONParser {
 
         try {
             //String Zeile für Zeile einlesen
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"), 8);
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"), 8);
             StringBuilder stringBuilder = new StringBuilder();
             String line = null;
-            while ((line = reader.readLine()) != null) {
+            while ((line = bufferedReader.readLine()) != null) {
                 stringBuilder.append(line + "\n");
-                //System.out.println(line);
             }
             inputStream.close();
             jsonString = stringBuilder.toString();
@@ -70,5 +71,22 @@ public class JSONParser {
 
         // gibt den JSON String zurück
         return jsonObject;
+    }*/
+
+        //URL für das Einlesen des JSON vorbereiten
+        URL urlScanner = new URL(url);
+
+        //Hier wird nun aus der Google Maps Geocoding API URL jede Linie eingelesen
+        Scanner scanner = new Scanner(urlScanner.openStream());
+        String stringJSON = new String();
+        while (scanner.hasNext()) stringJSON += scanner.nextLine();
+        scanner.close();
+
+        //Ein JSON Object bilden mit dem eingelesenen String aus der Google Maps Geocoding API URL
+        JSONObject jsonObject = new JSONObject(stringJSON);
+
+        return jsonObject;
+
+
     }
 }

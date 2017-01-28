@@ -13,20 +13,19 @@ public class UmlautParserTest {
     public void replaceUmlauteInUrl() {
         UmlautParser p = new UmlautParser();
 
+        //Test für die alle Gross- und Kleinbuchstaben (einzeln)
         String resultTest1 = p.replaceUmlaut("Ö,Ä,Ü,ä,ö,ü");
 
         Assert.assertEquals("OE,AE,UE,ae,oe,ue", resultTest1);
 
+        //Test für Kleinbuchstaben im Wort
         String resultTest2 = p.replaceUmlaut("Zürich");
 
         Assert.assertEquals("Zuerich", resultTest2);
 
-        String resultTest3 = p.replaceUmlaut("Übung");
+        //Test für Grossbuchstaben im Wort
+        String resultTest3 = p.replaceUmlaut("ÜBUNG");
 
-        Assert.assertEquals("Uebung", resultTest3);
-
-        String resultTest4 = p.replaceUmlaut("ÜBUNG");
-
-        Assert.assertEquals("UEBUNG", resultTest4);
+        Assert.assertEquals("UEBUNG", resultTest3);
     }
 }

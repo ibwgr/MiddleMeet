@@ -6,6 +6,8 @@ import org.json.JSONObject;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.IOException;
+
 
 public class JSONParserTest {
 
@@ -14,8 +16,13 @@ public class JSONParserTest {
         JSONParser jsonParser = new JSONParser();
 
         //einfaches JSON Objekt von Google Maps parsen
-        JSONObject result = jsonParser.getJSONFromUrl("https://maps.googleapis.com/maps/api/directions/json?" +
-                "origin=Mols&region=Schweiz&destination=Walenstadt&region=Schweiz&key=AIzaSyDBzdyeHTvujz4KRSvwO5qsrZ-FTCpaNTk");
+        JSONObject result = null;
+        try {
+            result = jsonParser.getJSONFromUrl("https://maps.googleapis.com/maps/api/directions/json?" +
+                    "origin=Mols&region=Schweiz&destination=Walenstadt&region=Schweiz&key=AIzaSyDBzdyeHTvujz4KRSvwO5qsrZ-FTCpaNTk");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         //erwartetes JSON Objekt, welches von Google Maps geparsed wurde
         String expected = "{'routes':[{'summary':'Route 3','copyrights':'Map data Â©2017 Google'," +

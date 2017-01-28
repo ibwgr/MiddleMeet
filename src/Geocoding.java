@@ -2,89 +2,83 @@
  * Created by Patrick Stoffel on 20.01.2017.
  */
 
-import javafx.util.Pair;
 import org.json.JSONObject;
 import java.net.URL;
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Geocoding {
 
-    //Ziel-Adresse formatiert ausgeben anhand Ortsnamen (Geocoding)
-    public Double[] geocoding (String addr, String region, String apiKey) throws Exception {
+    //Die Methode gibt die Geodaten in Form von Längen- und Breitengrad zurück (Geocoding),
+    //anhand eines übergebenen Ortsnamen (inkl. Angabe des Landes zur eindeutigen Identifizierung).
+    //Das Ganze erfolgt über die Geocoding API von Google Maps
+    public Double[] geocoding(String addr, String region, String apiKey) throws Exception {
 
-        // URL aufbauen
-        String linkGeocodingAddr = "https://maps.googleapis.com/maps/api/geocode/json?"
-                + "address="
-                + addr
-                + "&region="
-                + region
-                + "&key="
-                + apiKey;
-        //linkGeocodingAddr += URLEncoder.encode(addr, "UTF-8");
-        URL url = new URL(linkGeocodingAddr);
-        System.out.println(linkGeocodingAddr);
+        //Die URL für die Anfrage bei der Google Maps Geocoding API zusammenbauen
+        String urlGeocodingAPI = "https://maps.googleapis.com/maps/api/geocode/json?"
+                +"address=" +addr
+                +"&region=" +region
+                +"+&language=de"
+                +"&key=" +apiKey;
 
-        // aus aufgebauter URL lesen
-        Scanner scan = new Scanner(url.openStream());
-        String str = new String();
-        while (scan.hasNext()) str += scan.nextLine();
-        scan.close();
+        //URL für das Einlesen des JSON vorbereiten
+        URL urlScanner = new URL(urlGeocodingAPI);
 
-        // JSON Object bilden
-        JSONObject obj = new JSONObject(str);
-        if (!obj.getString("status").equals("OK")) ; //return linkGeocodingAddr;
+        //Hier wird nun aus der Google Maps Geocoding API URL jede Linie eingelesen
+        Scanner scanner = new Scanner(urlScanner.openStream());
+        String stringJSON = new String();
+        while (scanner.hasNext()) stringJSON += scanner.nextLine();
+        scanner.close();
 
-        // erstes Objekt im JSON Array ausgaben (formatierte Adresse)
-        JSONObject res = obj.getJSONArray("results").getJSONObject(0);
-        //System.out.println(res.getString("formatted_address"));
-        JSONObject loc = res.getJSONObject("geometry").getJSONObject("location");
-        //String latlngGeocoding = (+loc.getDouble("lat") + "," + loc.getDouble("lng"));
-        Double lat = +loc.getDouble("lat");
-        Double lng = +loc.getDouble("lng");
-        //System.out.println(latlngGeocoding);
+        //Ein JSON Object bilden mit dem eingelesenen String aus der Google Maps Geocoding API URL
+        JSONObject jsonObject = new JSONObject(stringJSON);
 
+        //aus dem JSON Object die gewünschten Daten auslesen
+        //in diesem Fall sind das die Werte für Längen- und Breitengrade
+        JSONObject results = jsonObject.getJSONArray("results").getJSONObject(0);
+        JSONObject location = results.getJSONObject("geometry").getJSONObject("location");
+        Double lat = +location.getDouble("lat"); //Breitengrad
+        Double lng = +location.getDouble("lng"); //Längengrad
+
+        //die beiden Werte für Längen- und Breitengrad werden in einem Double-Array zurückgegeben
         Double[] arrayResult = new Double[2];
-        lat = arrayResult[0];
-        lng = arrayResult[1];
+        arrayResult[0] = lat;
+        arrayResult[1] = lng;
 
         return arrayResult;
     }
 
+    //Die Methode gibt einen Ortsnamen (inkl. Land) zurück.
+    //Die Rückgabe erfolgt anhand von übergebenen Geodaten (umgekehrtes Geocoding).
+    //Das Ganze erfolgt wiederum über die Geocoding API von Google Maps.
+    public String[] geocodingInverse(String latlng, String apiKey) throws Exception {
 
-    //Ziel-Adresse formatiert ausgeben anhand Geodaten (Umgekehrtes Geocoding)
-    public String geocodingInvers(String latlng, String apiKey) throws Exception {
+        //Die URL für die Anfrage bei der Google Maps Geocoding API zusammenbauen
+        String urlGeocodingAPI = "https://maps.googleapis.com/maps/api/geocode/json?"
+                +"latlng=" +latlng
+                +"+&language=de"
+                +"&key=" +apiKey;
 
-        String result = "";
+        //URL für das Einlesen des JSON vorbereiten
+        URL urlScanner = new URL(urlGeocodingAPI);
 
-        // URL aufbauen
-        String linkGeocodingLatLng = "https://maps.googleapis.com/maps/api/geocode/json?"
-                + "latlng="
-                + latlng
-                +"&key="
-                +apiKey;
-        linkGeocodingLatLng += URLEncoder.encode(latlng, "UTF-8");
-        URL url = new URL(linkGeocodingLatLng);
+        //Hier wird nun aus der Google Maps Geocoding API URL jede Linie eingelesen
+        Scanner scanner = new Scanner(urlScanner.openStream());
+        String stringJSON = new String();
+        while (scanner.hasNext()) stringJSON += scanner.nextLine();
+        scanner.close();
 
-        // aus aufgebauter URL lesen
-        Scanner scan = new Scanner(url.openStream());
-        String str = new String();
-        while (scan.hasNext()) str += scan.nextLine();
-        scan.close();
+        //Ein JSON Object bilden mit dem eingelesenen String aus der Google Maps Geocoding API URL
+        JSONObject jsonObject = new JSONObject(stringJSON);
 
-        // JSON Object bilden
-        JSONObject obj = new JSONObject(str);
-        if (!obj.getString("status").equals("OK")) return linkGeocodingLatLng;
+        //aus dem JSON Object die gewünschten Daten auslesen
+        //in diesem Fall ist das ein String mit einer formatierten Adresse (z.B. "Chur, Schweiz"
+        JSONObject results = jsonObject.getJSONArray("results").getJSONObject(1);
+        String formattedAddress = (results.getString("formatted_address"));
 
-        // erstes Objekt im JSON Array ausgaben (formatierte Adresse)
-        JSONObject res = obj.getJSONArray("results").getJSONObject(0);
-        //System.out.println(res.getString("formatted_address"));
-        JSONObject loc = res.getJSONObject("geometry").getJSONObject("location");
-        String latlngGeocodingInvers = (+loc.getDouble("lat") + "," + loc.getDouble("lng"));
-        //System.out.println(latlngGeocodingInvers);
+        //Für die Rückgabe werden aus dem String alle Leerschläge entfernt.
+        //Der String wird bei jedem Komma getrennt, und in ein String-Array geschrieben
+        String[] formattedAddressArray = formattedAddress.replace(" ","").split(",");
 
-        return result;
+        return formattedAddressArray;
     }
 }
