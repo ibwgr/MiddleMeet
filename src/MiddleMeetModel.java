@@ -4,25 +4,37 @@
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URLDecoder;
 
-public class MiddleMeetModel {
+public class MiddleMeetModel{
 
-
+    private String start;
+    private String region1;
+    private String finish;
+    private String region2;
     private String halftime;
     private String km;
     private String time;
+    private String status;
+    private ImageIcon icon;
+    private String destinationDecode;
+    private String duration;
+    private String distance;
 
 
-    public static void main(String[] args) {
+
+    // public static void main(String[] args) {
+    public MiddleMeetModel(String start, String region1, String finish, String region2) {
 
         String apiKey = "AIzaSyDBzdyeHTvujz4KRSvwO5qsrZ-FTCpaNTk";          //Google Developers API-Key: AIzaSyDBzdyeHTvujz4KRSvwO5qsrZ-FTCpaNTk
 
-        String start = "Bern";
+        /*String start = "Bern";
         String region1 = "Schweiz";
         String finish = "Chur";
-        String region2 = "Schweiz";
+        String region2 = "Schweiz";*/
 
 
         //Umlaut parsen, damit der Https-Link zu Testzwecken genutzt werden kann
@@ -96,20 +108,25 @@ public class MiddleMeetModel {
             JSONObject objectDuration = (JSONObject) objectLegs.get("duration");
             String duration = objectDuration.getString("text");
 
-            System.out.println("Zeit bis zum Treffpunkt: " +duration);
-            System.out.println("Distanz zum Mittelpunk: " +distance);
-            System.out.println("Mittelpunkt: " +destinationDecode);
-            System.out.println("Status: " +status);
+            System.out.println("Zeit bis zum Treffpunkt: " + duration);
+            System.out.println("Distanz zum Mittelpunk: " + distance);
+            System.out.println("Mittelpunkt: " + destinationDecode);
+            System.out.println("Status: " + status);
 
-        //Ort resp. Verzweigung auf der Route finden, die in der nähe der halben Zeit des Weges liegt
-        JSONArray arraySteps = objectLegs.getJSONArray("steps");
+
+            //Ort resp. Verzweigung auf der Route finden, die in der nähe der halben Zeit des Weges liegt
+            JSONArray arraySteps = objectLegs.getJSONArray("steps");
 
             //************************************************************************
             //neues Objekt der Klasse Snapshoter erzeugen
             Snapshoter snapshoter = new Snapshoter();
             //Snapshot mit den drei Stecknadeln erstellen
+
+
+
+
             try {
-                snapshoter.snapshot(start,finish,midpointCity,apiKey);
+                snapshoter.snapshot(start, finish, midpointCity, apiKey);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -118,7 +135,12 @@ public class MiddleMeetModel {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+
+
     }
+
+
 
     //Die nachfolgende Methode berechnet den geografischen Mittelpunkt zwischen zwei Punkten,
     //die der Methode mit Längen- und Breitengrad übergeben werden.
@@ -168,6 +190,35 @@ public class MiddleMeetModel {
                 +"+&language=de"
                 +"&key=" +apiKey;
         return urlString;
+    }
+
+    public ImageIcon getIcon(String status) {
+        switch (status) {
+            case "OK": icon = new ImageIcon(getClass().getResource("/img/snapshotGoogleMaps.jpg")) ;
+                break;
+            case "ERROR": icon = new ImageIcon(getClass().getResource("/img/error.jpg"));
+                break;
+            default: icon = new ImageIcon(getClass().getResource("/img/intro.jpg"));
+                break;
+        }
+        return icon;
+    }
+
+
+    public String getStatus() {
+        return status;
+    }
+
+    public String getCalculatedMeetpoint() {
+        return destinationDecode;
+    }
+
+    public String getCalculatedKm() {
+        return distance;
+    }
+
+    public String getCalculatedTime() {
+        return duration;
     }
 }
 

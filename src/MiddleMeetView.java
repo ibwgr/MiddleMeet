@@ -22,11 +22,11 @@ public class MiddleMeetView extends JFrame {
     private JTextField region2 = new JTextField(columns);
     private JLabel result = new JLabel("Ergebnis");
     private JLabel meetpoint = new JLabel("Meeting Point");
-    private JTextField calculatedMeetpoint = new JTextField(columns);
+    private JTextField destinationDecode = new JTextField(columns);
     private JLabel kmL = new JLabel("KM bis Meeting Point");
-    private JTextField calculatedKm = new JTextField(columns);
+    private JTextField distance = new JTextField(columns);
     private JLabel timeL = new JLabel("Zeit bis Meeting point");
-    private JTextField calculatedTime = new JTextField(columns);
+    private JTextField duration = new JTextField(columns);
     private JButton calculateButton = new JButton("Berechne MiddleMeet");
     private Font title = new Font("Default", Font.BOLD, 18);
 
@@ -35,8 +35,8 @@ public class MiddleMeetView extends JFrame {
     public MiddleMeetView() {
 
 
-        MiddleMeetModelTest mm = new MiddleMeetModelTest();
-        MiddleMeetController mc = new MiddleMeetController(this, mm);
+        //MiddleMeetModel mm = new MiddleMeetModel();
+        MiddleMeetController mc = new MiddleMeetController(this);
 
         ImageIcon icon = new ImageIcon(getClass().getResource("/img/intro.jpg"));
 
@@ -56,9 +56,9 @@ public class MiddleMeetView extends JFrame {
         place1.setFont(title);
         place2.setFont(title);
         result.setFont(title);
-        calculatedMeetpoint.setEditable(false);
-        calculatedKm.setEditable(false);
-        calculatedTime.setEditable(false);
+        destinationDecode.setEditable(false);
+        distance.setEditable(false);
+        duration.setEditable(false);
 
         //Elements added
         west.add(place1);
@@ -78,11 +78,11 @@ public class MiddleMeetView extends JFrame {
         west.add(result);
         west.add(new JLabel());
         west.add(meetpoint);
-        west.add(calculatedMeetpoint);
+        west.add(destinationDecode);
         west.add(kmL);
-        west.add(calculatedKm);
+        west.add(distance);
         west.add(timeL);
-        west.add(calculatedTime);
+        west.add(duration);
         west.add(new JSeparator(SwingConstants.HORIZONTAL));
         west.add(Box.createVerticalStrut(20));
         west.add(calculateButton);
@@ -115,15 +115,15 @@ public class MiddleMeetView extends JFrame {
 
     //SETTER
     public void setMeetpoint(String meetpoint) {
-        calculatedMeetpoint.setText(meetpoint);
+        destinationDecode.setText(meetpoint);
     }
 
     public void setKm(String km) {
-        calculatedKm.setText(km);
+        distance.setText(km);
     }
 
     public void setTime(String time) {
-        calculatedTime.setText(time);
+        duration.setText(time);
     }
 
     public void setIcon(ImageIcon icon) {

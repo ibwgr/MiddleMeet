@@ -170,7 +170,7 @@ public class MiddleMeetModelTest  {
         return urlString;
     }
 
-   public ImageIcon getIcon(String status) {
+/*   public ImageIcon getIcon(String status) {
         switch (status) {
             case "OK": icon = new ImageIcon(getClass().getResource("/img/snapshotGoogleMaps.jpg")) ;
                 break;
@@ -180,7 +180,7 @@ public class MiddleMeetModelTest  {
                 break;
         }
         return icon;
-    }
+    }*/
 
     public String getCalculatedMeetpoint() {
         return calculatedMeetpoint;
