@@ -3,7 +3,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-
 public class MiddleMeetController {
 
     private MiddleMeetView mv;
@@ -26,8 +25,7 @@ public class MiddleMeetController {
             String region2;
             ImageIcon icon;
             final String apiKey = "AIzaSyDBzdyeHTvujz4KRSvwO5qsrZ-FTCpaNTk";
-            //String status;
-            //String img;
+
 
             start = mv.getStart();
             region1 = mv.getRegion1();
@@ -36,33 +34,22 @@ public class MiddleMeetController {
             icon = mm.getIcon(mm.getStatus());
             mv.setIcon(icon);
             System.out.println(icon);
-            //img = mv.getStatus;
+
 
             mm.getDistance(start, region1, finish, region2, apiKey);
             mv.setMeetpoint(mm.getCalculatedMeetpoint());
 
-            //mm.calculateKm(region1);
             mv.setKm(mm.getCalculatedKm());
 
-
-
-           // mm.calculateTime(finish);
             mv.setTime(mm.getCalculatedTime());
-
-
-            //mv.setImgPath(mm.chooseImage(status));
-
 
             System.out.println(start);
             System.out.println(region1);
             System.out.println(finish);
             System.out.println(region2);
 
-
-
-
+        }
     }
-}
 }
 
 

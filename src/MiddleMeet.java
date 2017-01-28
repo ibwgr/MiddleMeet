@@ -7,7 +7,7 @@ public class MiddleMeet {
         MiddleMeetView mv = new MiddleMeetView();
 
         mv.setTitle("MiddleMeet");
-        mv.setSize(840, 680);
+        mv.setSize(990, 680);
         mv.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mv.setVisible(true);
     }

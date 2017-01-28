@@ -6,11 +6,10 @@ import java.awt.event.ActionListener;
 public class MiddleMeetView extends JFrame {
 
 
-
+    public ImageIcon icon;
+    public JLabel L3 = new JLabel();
     JPanel west, center;
     private int columns = 12;
-
-
     private JLabel place1 = new JLabel("Ort 1");
     private JLabel startL1 = new JLabel("Ort");
     private JLabel startL2 = new JLabel("Ort");
@@ -29,22 +28,15 @@ public class MiddleMeetView extends JFrame {
     private JLabel timeL = new JLabel("Zeit bis Meeting point");
     private JTextField calculatedTime = new JTextField(columns);
     private JButton calculateButton = new JButton("Berechne MiddleMeet");
-    private Font title = new Font ("Default", Font.BOLD, 18);
-    //private ImageIcon icon;
-    private String status = "OK";
-    private String calculatedStatus;
-    private ImageIcon intro, error, map;
-    public ImageIcon icon;
-    public JLabel L3 = new JLabel();
+    private Font title = new Font("Default", Font.BOLD, 18);
 
 
     //Constructor
     public MiddleMeetView() {
 
 
-
         MiddleMeetModelTest mm = new MiddleMeetModelTest();
-        MiddleMeetController mc = new MiddleMeetController(this,mm);
+        MiddleMeetController mc = new MiddleMeetController(this, mm);
 
         ImageIcon icon = new ImageIcon(getClass().getResource("/img/intro.jpg"));
 
@@ -57,40 +49,7 @@ public class MiddleMeetView extends JFrame {
         this.add(center, BorderLayout.CENTER);
 
 
-
-        /*final String DEFAULT = "/img/intro.jpg";
-        final String ERROR = "/img/error.jpg";
-        final String OK = "/img/snapshotGoogleMaps.jpg";*/
-
-
-        //Switch Case einbauen
-
-
-        /*String img;*/
-
-        /*final String INTRO = "/img/intro.jpg";
-        final String ERROR = "/img/error.jpg";
-        final String MAP = "/img/snapshotGoogleMaps.jpg";
-
-        img = MAP;*/
-
-
-
-
-
-        /*JLabel L3 = new JLabel();*/
         L3.setIcon(icon);
-
-
-
-
-        /*switch (imgPath) {
-            case "/img/snapshotGoogleMaps.jpg": L3.setIcon(new ImageIcon(getClass().getResource("/img/snapshotGoogleMaps.jpg")));
-            break;
-            case "/img/error.jpg": L3.setIcon(new ImageIcon(getClass().getResource("/img/error.jpg")));
-            break;
-            default: L3.setIcon(new ImageIcon(getClass().getResource("/img/intro.jpg")));
-            break;}*/
 
 
         //Properties
@@ -130,95 +89,51 @@ public class MiddleMeetView extends JFrame {
         center.add(L3);
 
 
-
-        //Margins
-        west.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
-
-
+        //add margins to border layout
+        west.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
     }
 
-    /*private void setImg() {
-        if(status == "OK")
-        {
-            background = new ImageIcon("img/snapshotGoogleMaps.jpg");
-        }
-        if(status == "ERROR")
-        {
-            background = new ImageIcon("img/error.jpg");
-        }
-        else
-        {
-            background = new ImageIcon("img/intro.jpg");
 
-
-        }
-    }*/
-
-
-    public String getStart(){
+    //GETTER
+    public String getStart() {
 
         return start.getText();
     }
 
-    public String getRegion1(){
+    public String getRegion1() {
         return region1.getText();
     }
 
-    public String getFinish(){
+    public String getFinish() {
         return finish.getText();
     }
-    
-    public String getRegion2(){
+
+    public String getRegion2() {
         return region2.getText();
     }
 
-    /*public String getStatus(){
-        return status;
-    }*/
-
-
 
     //SETTER
-    public void setMeetpoint(String meetpoint){
+    public void setMeetpoint(String meetpoint) {
         calculatedMeetpoint.setText(meetpoint);
     }
 
-    public void setKm(String km){
+    public void setKm(String km) {
         calculatedKm.setText(km);
     }
 
-    public void setTime(String time){
+    public void setTime(String time) {
         calculatedTime.setText(time);
     }
 
     public void setIcon(ImageIcon icon) {
         this.icon = icon;
         L3.setIcon(icon);
-        revalidate();
-        repaint();
-
     }
-
-
-
 
 
     void addCalculateListener(ActionListener listenForCalcButton) {
 
         calculateButton.addActionListener(listenForCalcButton);
     }
-
-    void displayErrorMessage(String errorMessage){
-
-        JOptionPane.showMessageDialog(this, errorMessage);
-
-    }
-
-
-
-
-    //http://stackoverflow.com/questions/20411215/cannot-update-java-swing-imageicon
-
-
-
 }
