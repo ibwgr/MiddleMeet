@@ -101,6 +101,8 @@ public class MiddleMeetModel {
             System.out.println("Mittelpunkt: " +destinationDecode);
             System.out.println("Status: " +status);
 
+        //Ort resp. Verzweigung auf der Route finden, die in der nähe der halben Zeit des Weges liegt
+        JSONArray arraySteps = objectLegs.getJSONArray("steps");
 
             //************************************************************************
             //neues Objekt der Klasse Snapshoter erzeugen
@@ -145,8 +147,9 @@ public class MiddleMeetModel {
     }
 
 
-    //Anfrage für Route an Google Maps API mit eingegebenem Start- und Ziel-Ort
-    public static String calculateRoute(String start, String region1, String finish, String region2, String apiKey) {
+        //Anfrage für Route an Google Maps API mit eingegebenem Start- und Ziel-Ort
+
+/*    public static String calculateRoute(String start, String region1, String finish, String region2, String apiKey) {
         String urlString = "https://maps.googleapis.com/maps/api/directions/json"
                 +"?origin=" +start
                 +"&region=" +region1
@@ -155,8 +158,7 @@ public class MiddleMeetModel {
                 +"+&language=de"
                 +"&key=" +apiKey;
         return urlString;
-    }
-
+    }*/
 
     public static String getDistance(String start, String region1, String finish, String region2, String apiKey) {
         String urlString = "https://maps.googleapis.com/maps/api/distancematrix/json"
