@@ -149,7 +149,7 @@ public class MiddleMeetModel {
 
         //Anfrage für Route an Google Maps API mit eingegebenem Start- und Ziel-Ort
 
-/*    public static String calculateRoute(String start, String region1, String finish, String region2, String apiKey) {
+   public static String calculateRoute(String start, String region1, String finish, String region2, String apiKey) {
         String urlString = "https://maps.googleapis.com/maps/api/directions/json"
                 +"?origin=" +start
                 +"&region=" +region1
@@ -158,7 +158,7 @@ public class MiddleMeetModel {
                 +"+&language=de"
                 +"&key=" +apiKey;
         return urlString;
-    }*/
+    }
 
     public static String getDistance(String start, String region1, String finish, String region2, String apiKey) {
         String urlString = "https://maps.googleapis.com/maps/api/distancematrix/json"
