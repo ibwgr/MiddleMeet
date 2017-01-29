@@ -7,22 +7,17 @@ public class MiddleMeetController {
 
     private MiddleMeetView mv;
 
-
     public MiddleMeetController(MiddleMeetView mv) {
         this.mv = mv;
-
-
         this.mv.addCalculateListener(new CalculateListener());
     }
 
     class CalculateListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
 
-            SwingUtilities.updateComponentTreeUI(mv);
             mv.center.revalidate();
             mv.center.validate();
             mv.center.repaint();
-
 
             String start;
             String region1;
@@ -30,7 +25,6 @@ public class MiddleMeetController {
             String region2;
             ImageIcon icon;
             String status;
-
 
             start = mv.getStart();
             start = start.replace(" ", ""); //Leerschläge entfernen
@@ -45,6 +39,9 @@ public class MiddleMeetController {
                 mm = new MiddleMeetModel(start, region1, finish, region2);
             } catch (Exception e1) {
                 status = "ERROR";
+                mv.setMeetpoint("kein Meeting Point gefunden");
+                mv.setKm("");
+                mv.setTime("");
                 icon = new ImageIcon(getClass().getResource("img/error.jpg"));
                 mv.setIcon(icon);
                 e1.printStackTrace();
@@ -53,15 +50,10 @@ public class MiddleMeetController {
             icon = mm.getIcon(status);
 
             mv.setIcon(icon);
-
             mv.setMeetpoint(mm.getCalculatedMeetpoint());
-
             mv.setKm(mm.getCalculatedKm());
-
             mv.setTime(mm.getCalculatedTime());
 
         }
     }
 }
-
-

@@ -9,7 +9,7 @@ public class MiddleMeetView extends JFrame {
     public JLabel L3 = new JLabel();
     JPanel west;
     public JPanel center;
-    private int columns = 12;
+    private int columns = 16;
     private JLabel place1 = new JLabel("Ort 1");
     private JLabel startL1 = new JLabel("Ort");
     private JLabel startL2 = new JLabel("Ort");
@@ -23,7 +23,7 @@ public class MiddleMeetView extends JFrame {
     private JLabel result = new JLabel("Ergebnis");
     private JLabel meetpoint = new JLabel("Meeting Point");
     private JTextField destinationDecode = new JTextField(columns);
-    private JLabel kmL = new JLabel("KM bis Meeting Point");
+    private JLabel kmL = new JLabel("Distanz bis Meeting Point");
     private JTextField distance = new JTextField(columns);
     private JLabel timeL = new JLabel("Zeit bis Meeting point");
     private JTextField duration = new JTextField(columns);
@@ -55,6 +55,9 @@ public class MiddleMeetView extends JFrame {
         destinationDecode.setEditable(false);
         distance.setEditable(false);
         duration.setEditable(false);
+        meetpoint.setAlignmentX(Component.LEFT_ALIGNMENT);
+        distance.setAlignmentX(Component.LEFT_ALIGNMENT);
+        duration.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         //Elements added
         west.add(place1);
