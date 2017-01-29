@@ -29,7 +29,6 @@ public class MiddleMeetController {
             mv.center.repaint();
 
 
-
             String start;
             String region1;
             String finish;
@@ -47,6 +46,9 @@ public class MiddleMeetController {
             try {
                 mm = new MiddleMeetModel(start, region1, finish, region2);
             } catch (Exception e1) {
+                status = "ERROR";
+                icon = new ImageIcon(getClass().getResource("/img/error.jpg"));
+                mv.setIcon(icon);
                 e1.printStackTrace();
             }
             status = mm.getStatus();

@@ -202,12 +202,6 @@ public class MiddleMeetModel {
         } else {
             icon = new ImageIcon(getClass().getResource("/img/error.jpg"));
         }
-
-        /*switch (newStatus) {
-            case "OK":
-                break;
-            default: ;
-                break;*/
         return icon;
     }
 
