@@ -17,7 +17,7 @@ public class SnapshoterTest {
         snapshoter.snapshot("Chur", "Mols", "7323Wangs", "AIzaSyDBzdyeHTvujz4KRSvwO5qsrZ-FTCpaNTk");
 
         //Grösse des erzeugten Files auslesen
-        File fileTest = new File("src/img/snapshotGoogleMaps.jpg");
+        File fileTest = new File("img/snapshotGoogleMaps.jpg");
         long sizeTestFile = fileTest.length();
 
         //Grösse des Referenz-Files auslesen
