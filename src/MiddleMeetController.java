@@ -1,6 +1,10 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.nio.file.DirectoryNotEmptyException;
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 
 
 public class MiddleMeetController {
@@ -19,6 +23,11 @@ public class MiddleMeetController {
     class CalculateListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
 
+            SwingUtilities.updateComponentTreeUI(mv);
+            mv.center.revalidate();
+            mv.center.validate();
+            mv.center.repaint();
+
 
 
             String start;
@@ -34,11 +43,16 @@ public class MiddleMeetController {
             region1 = mv.getRegion1();
             finish = mv.getFinish();
             region2 = mv.getRegion2();
-            MiddleMeetModel mm = new MiddleMeetModel(start, region1, finish, region2);
+            MiddleMeetModel mm = null;
+            try {
+                mm = new MiddleMeetModel(start, region1, finish, region2);
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
             status = mm.getStatus();
             icon = mm.getIcon(status);
+
             mv.setIcon(icon);
-            System.out.println(icon);
 
 
             mm.getDistance(start, region1, finish, region2, apiKey);
@@ -52,6 +66,13 @@ public class MiddleMeetController {
             System.out.println(region1);
             System.out.println(finish);
             System.out.println(region2);
+
+
+
+
+
+
+
 
         }
     }

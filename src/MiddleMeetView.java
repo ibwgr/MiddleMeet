@@ -8,7 +8,8 @@ public class MiddleMeetView extends JFrame {
 
     public ImageIcon icon;
     public JLabel L3 = new JLabel();
-    JPanel west, center;
+    JPanel west;
+    public JPanel center;
     private int columns = 12;
     private JLabel place1 = new JLabel("Ort 1");
     private JLabel startL1 = new JLabel("Ort");
@@ -33,7 +34,6 @@ public class MiddleMeetView extends JFrame {
 
     //Constructor
     public MiddleMeetView() {
-
 
         //MiddleMeetModel mm = new MiddleMeetModel();
         MiddleMeetController mc = new MiddleMeetController(this);
@@ -128,6 +128,7 @@ public class MiddleMeetView extends JFrame {
 
     public void setIcon(ImageIcon icon) {
         this.icon = icon;
+        repaint();
         L3.setIcon(icon);
     }
 
