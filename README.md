@@ -21,18 +21,19 @@ Nach dem Start der Applikation erscheint der nachfolgende Startscreen:<br />
 Hier hat der Benutzer die Möglichkeit zwei Orte einzugeben.<br />
 Die Angabe eines Landes ist optional. Sie soll dabei helfen, einen Ortsnamen eindeutig zu
 identifizieren, falls dieser mehrfach existiert.<br />
-Nach erfolgreicher Eingabe wird das Ergebnis mit folgenden Infos angezeigt:
+Nach erfolgreicher Eingabe wird das Ergebnis mit folgenden Infos plus ein Kartenausschnitt angezeigt:
 
 • Ortsname des Treffpunktes<br />
 • Distanz bis zum Treffpunkt<br />
 • Fahrzeit bis zum Treffpunkt<br />
+![alt tag](resources/mapscreen.jpg)
 
 Eine falsche Eingabe wird druch das GUI entsprechend dargestellt:<br />
 ![alt tag](resources/errorscreen.jpg)
 
 **Unit Tests**<br />
 Die laufen nicht automatisiert. Sie müssen in der IDE von Hand gestartet werden.<br />
-z.B. in IntelliJ: Rechtsklick auf das Test-Verzeichnis und "Run all test" auswählen.
+z.B. in IntelliJ: Rechtsklick auf das Test-Verzeichnis und "Run all Tests" auswählen.
 
 **Aufbau der Applikation**<br />
 Die Applikation ist nach dem MVC-Paradigma aufgebaut. 
@@ -49,3 +50,6 @@ Weiter verfügt die Applikation über die folgenden Hilfsklassen:<br />
 **API Dokumentation**<br />
 Die Dokumentation zur genutzen Google Maps API findet sich unter: https://developers.google.com/maps/documentation/<br />
 Unter der Rubrik Web Service API finden sich sämtliche Beschreibungen zu den genutzten Diensten.
+
+**Javadoc**<br />
+Der Javadoc der ganzen Applikation findet sich im Projektverzeichnis unter doc.

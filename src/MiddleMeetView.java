@@ -73,7 +73,7 @@ public class MiddleMeetView extends JFrame {
         west.add(regionL2);
         west.add(region2);
         west.add(Box.createVerticalStrut(20));
-        west.add(new JSeparator(SwingConstants.HORIZONTAL));
+        west.add(new JLabel());
         west.add(result);
         west.add(new JLabel());
         west.add(meetpoint);
@@ -82,7 +82,7 @@ public class MiddleMeetView extends JFrame {
         west.add(distance);
         west.add(timeL);
         west.add(duration);
-        west.add(new JSeparator(SwingConstants.HORIZONTAL));
+        west.add(new JLabel());
         west.add(Box.createVerticalStrut(20));
         west.add(calculateButton);
         center.add(L3);

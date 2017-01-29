@@ -1,7 +1,3 @@
-/**
- * Created by Patrick Stoffel on 27.01.2017.
- */
-
 import org.junit.Assert;
 import org.junit.Test;
 
