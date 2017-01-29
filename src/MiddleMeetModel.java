@@ -28,7 +28,7 @@ public class MiddleMeetModel {
         String region1OhneUmlaut = umlautParser.replaceUmlaut(region1);
         String finishOhneUmlaut = umlautParser.replaceUmlaut(finish);
         String region2OhneUmlaut = umlautParser.replaceUmlaut(region2);
-        //Konsolenausgabe, damit der Link zur Analyse genutzt werden kann
+        //Konsolenausgabe, damit der Link zur Analyse der Route genutzt werden kann
         System.out.println(calculateRoute(startOhneUmlaut, region1OhneUmlaut, finishOhneUmlaut, region2OhneUmlaut, apiKey));
 
         //**************************************************************************************************************
@@ -81,10 +81,10 @@ public class MiddleMeetModel {
         String status = jsonObject.getString("status");
 
         //Ausgabe der Ergebnisse auf der Konsole
-        System.out.println("Zeit bis zum Treffpunkt: " + duration);
-        System.out.println("Distanz zum Mittelpunk: " + distance);
-        System.out.println("Mittelpunkt: " + endAddress);
-        System.out.println("Status: " + status);
+        System.out.println("Treffpunkt: " +endAddress);
+        System.out.println("Zeit bis zum Treffpunkt: " +duration);
+        System.out.println("Distanz bis zum Treffpunkt: " +distance);
+        System.out.println("Status der Anfrage: " + status);
 
         //Variablen den private Variablen zuweisen
         newDuration = duration;

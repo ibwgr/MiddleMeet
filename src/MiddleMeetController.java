@@ -38,9 +38,13 @@ public class MiddleMeetController {
 
 
             start = mv.getStart();
+            start = start.replace(" ", ""); //Leerschläge entfernen
             region1 = mv.getRegion1();
+            region1 = region1.replace(" ", ""); //Leerschläge entfernen
             finish = mv.getFinish();
+            finish = finish.replace(" ", ""); //Leerschläge entfernen
             region2 = mv.getRegion2();
+            region2 = region2.replace(" ", ""); //Leerschläge entfernen
             MiddleMeetModel mm = null;
             try {
                 mm = new MiddleMeetModel(start, region1, finish, region2);
