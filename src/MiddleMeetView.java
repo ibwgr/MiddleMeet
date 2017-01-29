@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 
 public class MiddleMeetView extends JFrame {
 
-
     public ImageIcon icon;
     public JLabel L3 = new JLabel();
     JPanel west;
@@ -31,28 +30,25 @@ public class MiddleMeetView extends JFrame {
     private JButton calculateButton = new JButton("Berechne MiddleMeet");
     private Font title = new Font("Default", Font.BOLD, 18);
 
-
-    //Constructor
+    //Konstruktor
     public MiddleMeetView() {
 
-        //MiddleMeetModel mm = new MiddleMeetModel();
         MiddleMeetController mc = new MiddleMeetController(this);
 
         ImageIcon icon = new ImageIcon(getClass().getResource("img/intro.jpg"));
 
-
-        //create panels
+        //Erstellung der JPanels
         west = new JPanel(new GridLayout(13, 2));
         center = new JPanel();
 
+        // JPanel west und center zuweisen
         this.add(west, BorderLayout.WEST);
         this.add(center, BorderLayout.CENTER);
 
-
+        //icon wird dem JLabel L3 zuweisen
         L3.setIcon(icon);
 
-
-        //Properties
+        //Eigenschaften
         place1.setFont(title);
         place2.setFont(title);
         result.setFont(title);
@@ -88,11 +84,9 @@ public class MiddleMeetView extends JFrame {
         west.add(calculateButton);
         center.add(L3);
 
-
-        //add margins to border layout
+        //Border des "west" JPanels setzen
         west.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
     }
-
 
     //GETTER
     public String getStart() {
@@ -111,7 +105,6 @@ public class MiddleMeetView extends JFrame {
     public String getRegion2() {
         return region2.getText();
     }
-
 
     //SETTER
     public void setMeetpoint(String meetpoint) {
@@ -132,7 +125,7 @@ public class MiddleMeetView extends JFrame {
         L3.setIcon(icon);
     }
 
-
+    // ActionListener - klick auf calculateButton führt actionPerformed im Controller aus
     void addCalculateListener(ActionListener listenForCalcButton) {
 
         calculateButton.addActionListener(listenForCalcButton);
