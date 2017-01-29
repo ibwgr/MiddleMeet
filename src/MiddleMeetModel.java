@@ -1,7 +1,3 @@
-/**
- * Created by Patrick Stoffel on 07.01.2017.
- */
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 import javax.swing.*;

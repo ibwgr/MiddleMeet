@@ -1,7 +1,3 @@
-/**
- * Created by Patrick Stoffel on 20.01.2017.
- */
-
 import org.json.JSONObject;
 
 public class Geocoding {
