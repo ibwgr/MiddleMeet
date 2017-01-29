@@ -47,5 +47,5 @@ Weiter verfügt die Applikation über die folgenden Hilfsklassen:<br />
 • UmlauteParser: Ersetzt alle Umlaute in einem String
 
 **API Dokumentation**<br />
-Die Dokumentation zur genutzen Google Maps API findet sich unter: 
-link:URL_to_wiki[https://developers.google.com/maps/documentation/]
+Die Dokumentation zur genutzen Google Maps API findet sich unter: https://developers.google.com/maps/documentation/<br />
+Unter der Rubrik Web Service API finden sich sämtliche Beschreibungen zu den genutzten Diensten.
