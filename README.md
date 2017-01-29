@@ -46,3 +46,6 @@ Weiter verfügt die Applikation über die folgenden Hilfsklassen:<br />
 • Snapshoter: Nutzt die Gooogle Static Maps API um Kartensnapshots zu erstellen<br />
 • UmlauteParser: Ersetzt alle Umlaute in einem String
 
+**API Dokumentation**<br />
+Die Dokumentation zur genutzen Google Maps API findet sich unter: 
+link:URL_to_wiki[https://developers.google.com/maps/documentation/]
