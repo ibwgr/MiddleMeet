@@ -8,8 +8,8 @@ import org.junit.Test;
 
 public class UmlautParserTest {
 
-    //Methode zum ersetzten aller Umlaute (ä,ö,ü) damit der https-link zu Testzwecken brauchbar ist
     @Test
+    //Methode zum ersetzten aller Umlaute (ä,ö,ü) damit der https-link zu Testzwecken brauchbar ist
     public void replaceUmlauteInUrl() {
         UmlautParser p = new UmlautParser();
 

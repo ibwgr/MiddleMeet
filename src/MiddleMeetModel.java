@@ -4,143 +4,101 @@
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import javax.swing.*;
-import java.io.IOException;
-import java.net.URLDecoder;
 
 public class MiddleMeetModel {
 
-    private String start;
-    private String region1;
-    private String finish;
-    private String region2;
-    private String halftime;
-    private String km;
-    private String time;
-    private String status;
-    private String newStatus;
     private ImageIcon icon;
-    private String destinationDecode;
-    private String newDestinationDecode;
-    private String duration;
+    private String newStatus;
+    private String newEndAddress;
     private String newDuration;
     private String newDistance;
-    private String distance;
 
 
-    // public static void main(String[] args) {
     public MiddleMeetModel(String start, String region1, String finish, String region2) throws Exception {
 
-        String apiKey = "AIzaSyDBzdyeHTvujz4KRSvwO5qsrZ-FTCpaNTk";          //Google Developers API-Key: AIzaSyDBzdyeHTvujz4KRSvwO5qsrZ-FTCpaNTk
+        //Google Developers API-Key für Anfragen bei Google Maps: AIzaSyDBzdyeHTvujz4KRSvwO5qsrZ-FTCpaNTk
+        String apiKey = "AIzaSyDBzdyeHTvujz4KRSvwO5qsrZ-FTCpaNTk";
 
-        /*String start = "Bern";
-        String region1 = "Schweiz";
-        String finish = "Chur";
-        String region2 = "Schweiz";*/
-
-
-        //Umlaut parsen, damit der Https-Link zu Testzwecken genutzt werden kann
-        //Die Google Maps API kann direkt mit den Umlauten arbeiten, ohne dass diese geparsed werden müssen
+        //Umlaut parsen, damit der ausgegebene Https-Link auf der Konsole zu Testzwecken genutzt werden kann.
+        //Die Google Maps API kann direkt mit den Umlauten arbeiten, ohne dass diese geparsed werden müssen.
         UmlautParser umlautParser = new UmlautParser();
 
         String startOhneUmlaut = umlautParser.replaceUmlaut(start);
         String region1OhneUmlaut = umlautParser.replaceUmlaut(region1);
         String finishOhneUmlaut = umlautParser.replaceUmlaut(finish);
         String region2OhneUmlaut = umlautParser.replaceUmlaut(region2);
+        //Konsolenausgabe, damit der Link zur Analyse genutzt werden kann
+        System.out.println(calculateRoute(startOhneUmlaut, region1OhneUmlaut, finishOhneUmlaut, region2OhneUmlaut, apiKey));
 
-        //************************************************************************
-
-
-        //System.out.println(calculateRoute(startOhneUmlaut, region1OhneUmlaut, finishOhneUmlaut, region2OhneUmlaut, apiKey));
-
-        //System.out.println(getDistance(start, region1, finish, region2, apiKey));
-
-
-        //Adresse formatiert ausgeben mit geocoding-Methode
+        //**************************************************************************************************************
+        //neues Objekt der Klasse Geocoding erzeugen, um die Koordinaten und Namen der Orte auszugeben
         Geocoding geocoding = new Geocoding();
-
+        //Längen- und Breitengrad für den Startpunkt aus Geocoding auslesen
         Double[] geocodingReslutStart = geocoding.geocoding(start, region1, apiKey);
         Double latStart = geocodingReslutStart[0];
         Double lngStart = geocodingReslutStart[1];
-
+        //Längen- und Breitengrad für den Endpunkt aus Geocoding auslesen
         Double[] geocodingReslutFinish = geocoding.geocoding(finish, region2, apiKey);
         Double latFinish = geocodingReslutFinish[0];
         Double lngFinish = geocodingReslutFinish[1];
 
-        //Mittelpunkt berechnet
-        String mittelpunkt = midPoint(latStart, lngStart, latFinish, lngFinish);
-        //System.out.println("Mittelpunkt (berechnet): " +mittelpunkt);
+        //den geografischen Mittelpunkt über die Methode midPoint berechnen
+        String midPoint = midPoint(latStart, lngStart, latFinish, lngFinish);
 
-        String[] geocdingInverseResult = geocoding.geocodingInverse(mittelpunkt, apiKey);
-        String midpointCity = geocdingInverseResult[0];
+        //mit dem umgekehrten Geocoding den Ortsnamen und das Land ermitteln, in dem der berechnete Mittelpunkt liegt
+        String[] geocdingInverseResult = geocoding.geocodingInverse(midPoint, apiKey);
+        String midPointPlace = geocdingInverseResult[0];
         String midpointCounty = geocdingInverseResult[1];
+        //**************************************************************************************************************
 
+        //**************************************************************************************************************
+        //Nach dem der geografische Mittelpunkt berechent wurde, sollen nun noch die Zeit und die Distanz,
+        //sowie der Name des Ortes ermittelt werden.
 
-        //Route zum Mittelpunkt berechnen
-        String distanceMidpoint = getDistance(start, region1, midpointCity, midpointCounty, apiKey);
-        //System.out.println("url für JSONparser: " +distanceMidpoint);
+        //Route vom Startpunkt zum berechneten Mittelpunkt anfragen
+        String routeToMidPoint = calculateRoute(start, region1, midPointPlace, midpointCounty, apiKey);
 
-        //Die url von Google Maps mit den Routendaten erstellen, damit anschliessend das JSON geparsed werden kann
-        String urlForJSONParser = distanceMidpoint;
+        //URL für das Einlesen des JSON vorbereiten
+        String urlForJSONParser = routeToMidPoint;
 
+        //neues Objekt der Klasse JSON Parsers erzeugen, und die URL übergeben
         JSONParser jsonParser = new JSONParser();
-        JSONObject object = jsonParser.getJSONFromUrl(urlForJSONParser);
+        JSONObject jsonObject = jsonParser.getJSONFromUrl(urlForJSONParser);
 
-        //Endadresse abholen
-        JSONArray destAddr = object.getJSONArray("destination_addresses");
-        String destination = destAddr.getString(0);
-        String destinationDecode = new String(destination.getBytes("iso-8859-1"), "UTF-8");
-
-        //Status abholen
-        String status = object.getString("status");
-
-        //************************************************************************
-        String timeMidpoint = calculateRoute(start, region1, midpointCity, midpointCounty, apiKey);
-
-        //Die url von Google Maps mit den Routendaten erstellen, damit anschliessend das JSON geparsed werden kann
-        String urlForJSONParser2 = timeMidpoint;
-
-        JSONParser jsonParser2 = new JSONParser();
-        JSONObject object2 = jsonParser2.getJSONFromUrl(urlForJSONParser2);
-
-        //Die totale Zeit in Sekunden aus dem JSON String auslesen
-        JSONArray arrayRoutes = object2.getJSONArray("routes");
+        //die notwendigen Daten aus dem JSON Object auslesen
+        JSONArray arrayRoutes = jsonObject.getJSONArray("routes");
         JSONObject objectRoutes = (JSONObject) arrayRoutes.get(0);
         JSONArray arrayLegs = objectRoutes.getJSONArray("legs");
         JSONObject objectLegs = (JSONObject) arrayLegs.get(0);
         JSONObject objectDistance = (JSONObject) objectLegs.get("distance");
-        String distance = objectDistance.getString("text");
+        String distance = objectDistance.getString("text"); //die Distanz als String auslesen
         JSONObject objectDuration = (JSONObject) objectLegs.get("duration");
-        String duration = objectDuration.getString("text");
+        String duration = objectDuration.getString("text"); //die Dauer als String auslesen
+        String endAddress = objectLegs.getString("end_address"); //die Ziel-Adresse als String auslesen
 
+        //Status der Anfrage abholen
+        String status = jsonObject.getString("status");
+
+        //Ausgabe der Ergebnisse auf der Konsole
         System.out.println("Zeit bis zum Treffpunkt: " + duration);
         System.out.println("Distanz zum Mittelpunk: " + distance);
-        System.out.println("Mittelpunkt: " + destinationDecode);
+        System.out.println("Mittelpunkt: " + endAddress);
         System.out.println("Status: " + status);
 
+        //Variablen den private Variablen zuweisen
         newDuration = duration;
-        System.out.println(newDuration);
-
         newDistance = distance;
-        System.out.println(newDistance);
-
-        newDestinationDecode = destinationDecode;
-        System.out.println(newDestinationDecode);
-
+        newEndAddress = endAddress;
         newStatus = status;
-        System.out.println(newStatus);
+        //**************************************************************************************************************
 
-
-        //Ort resp. Verzweigung auf der Route finden, die in der nähe der halben Zeit des Weges liegt
-        JSONArray arraySteps = objectLegs.getJSONArray("steps");
-
-
+        //**************************************************************************************************************
         //neues Objekt der Klasse Snapshoter erzeugen
         Snapshoter snapshoter = new Snapshoter();
-        //Snapshot mit den drei Stecknadeln erstellen
-        snapshoter.snapshot(start, finish, midpointCity, apiKey);
-
+        //Snapshot mit den drei Stecknadeln für Start-, End- und Mittelpunkt erstellen
+        snapshoter.snapshot(start, finish, midPointPlace, apiKey);
+        //**************************************************************************************************************
     }
 
 
@@ -183,17 +141,7 @@ public class MiddleMeetModel {
         return urlString;
     }
 
-    public static String getDistance(String start, String region1, String finish, String region2, String apiKey) {
-        String urlString = "https://maps.googleapis.com/maps/api/distancematrix/json"
-                + "?origins=" + start
-                + "&region=" + region1
-                + "&destinations=" + finish
-                + "&region=" + region2
-                + "+&language=de"
-                + "&key=" + apiKey;
-        return urlString;
-    }
-
+    //Status für GUI ermitteln
     public ImageIcon getIcon(String status) {
         newStatus = status;
 
@@ -205,15 +153,13 @@ public class MiddleMeetModel {
         return icon;
     }
 
-
-
-
+    //GETTER für Controller Klasse
     public String getStatus() {
         return newStatus;
     }
 
     public String getCalculatedMeetpoint() {
-        return newDestinationDecode;
+        return newEndAddress;
     }
 
     public String getCalculatedKm() {

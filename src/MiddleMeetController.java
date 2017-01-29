@@ -35,7 +35,6 @@ public class MiddleMeetController {
             String region2;
             ImageIcon icon;
             String status;
-            final String apiKey = "AIzaSyDBzdyeHTvujz4KRSvwO5qsrZ-FTCpaNTk";
 
 
             start = mv.getStart();
@@ -57,25 +56,17 @@ public class MiddleMeetController {
             mv.setIcon(icon);
 
 
-            mm.getDistance(start, region1, finish, region2, apiKey);
+            //mm.getDistance(start, region1, finish, region2, apiKey);
             mv.setMeetpoint(mm.getCalculatedMeetpoint());
 
             mv.setKm(mm.getCalculatedKm());
 
             mv.setTime(mm.getCalculatedTime());
 
-            System.out.println(start);
-            System.out.println(region1);
-            System.out.println(finish);
-            System.out.println(region2);
-
-
-
-
-
-
-
-
+            //System.out.println(start);
+            //System.out.println(region1);
+            //System.out.println(finish);
+            //System.out.println(region2);
         }
     }
 }

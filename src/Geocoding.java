@@ -3,8 +3,6 @@
  */
 
 import org.json.JSONObject;
-import java.net.URL;
-import java.util.Scanner;
 
 public class Geocoding {
 
@@ -21,16 +19,11 @@ public class Geocoding {
                 +"&key=" +apiKey;
 
         //URL für das Einlesen des JSON vorbereiten
-        URL urlScanner = new URL(urlGeocodingAPI);
+        String urlForJSONParser = urlGeocodingAPI;
 
-        //Hier wird nun aus der Google Maps Geocoding API URL jede Linie eingelesen
-        Scanner scanner = new Scanner(urlScanner.openStream());
-        String stringJSON = new String();
-        while (scanner.hasNext()) stringJSON += scanner.nextLine();
-        scanner.close();
-
-        //Ein JSON Object bilden mit dem eingelesenen String aus der Google Maps Geocoding API URL
-        JSONObject jsonObject = new JSONObject(stringJSON);
+        //neues Objekt der Klasse JSON Parsers erzeugen, und die URL übergeben
+        JSONParser jsonParser = new JSONParser();
+        JSONObject jsonObject = jsonParser.getJSONFromUrl(urlForJSONParser);
 
         //aus dem JSON Object die gewünschten Daten auslesen
         //in diesem Fall sind das die Werte für Längen- und Breitengrade
@@ -59,16 +52,11 @@ public class Geocoding {
                 +"&key=" +apiKey;
 
         //URL für das Einlesen des JSON vorbereiten
-        URL urlScanner = new URL(urlGeocodingAPI);
+        String urlForJSONParser = urlGeocodingAPI;
 
-        //Hier wird nun aus der Google Maps Geocoding API URL jede Linie eingelesen
-        Scanner scanner = new Scanner(urlScanner.openStream());
-        String stringJSON = new String();
-        while (scanner.hasNext()) stringJSON += scanner.nextLine();
-        scanner.close();
-
-        //Ein JSON Object bilden mit dem eingelesenen String aus der Google Maps Geocoding API URL
-        JSONObject jsonObject = new JSONObject(stringJSON);
+        //neues Objekt der Klasse JSON Parsers erzeugen, und die URL übergeben
+        JSONParser jsonParser = new JSONParser();
+        JSONObject jsonObject = jsonParser.getJSONFromUrl(urlForJSONParser);
 
         //aus dem JSON Object die gewünschten Daten auslesen
         //in diesem Fall ist das ein String mit einer formatierten Adresse (z.B. "Chur, Schweiz"
