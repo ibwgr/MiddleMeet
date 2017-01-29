@@ -26,7 +26,7 @@ Nach erfolgreicher Eingabe wird das Ergebnis mit folgenden Infos plus ein Karten
 • Ortsname des Treffpunktes<br />
 • Distanz bis zum Treffpunkt<br />
 • Fahrzeit bis zum Treffpunkt<br />
-![alt tag](resources/mapscreen.jpg)
+![alt tag](resources/resultscreen.jpg)
 
 Eine falsche Eingabe wird druch das GUI entsprechend dargestellt:<br />
 ![alt tag](resources/errorscreen.jpg)
