@@ -36,7 +36,7 @@ z.B. in IntelliJ: Rechtsklick auf das Test-Verzeichnis und "Run all test" auswä
 
 **Aufbau der Applikation**<br />
 Die Applikation ist nach dem MVC-Paradigma aufgebaut. 
-Über die die MiddleMeet-Klasse wird die Applikation gestartet.<br />
+Über die MiddleMeet-Klasse wird die Applikation gestartet.<br />
 ![alt tag](resources/mvc.jpg)
 
 Weiter verfügt die Applikation über die folgenden Hilfsklassen:<br />

@@ -146,7 +146,7 @@ public class MiddleMeetModel {
         newStatus = status;
 
         if (newStatus.equals("OK")) {
-            icon = new ImageIcon(getClass().getResource("img/snapshotGoogleMaps.jpg"));
+            icon = new ImageIcon("img/snapshotGoogleMaps.jpg");
         } else {
             icon = new ImageIcon(getClass().getResource("img/error.jpg"));
         }
