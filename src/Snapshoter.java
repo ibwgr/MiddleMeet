@@ -21,7 +21,7 @@ public class Snapshoter {
         //und lokal als .jpg abspeichern
         URL urlInputStream = new URL(urlStaticMapsAPI);
         InputStream inputStream = urlInputStream.openStream();
-        OutputStream outputStream = new FileOutputStream("src/img/snapshotGoogleMaps.jpg");
+        OutputStream outputStream = new FileOutputStream("img/snapshotGoogleMaps.jpg");
         byte[] bytes = new byte[2048];
         int length;
         while ((length = inputStream.read(bytes)) != -1) {

@@ -38,7 +38,7 @@ public class MiddleMeetView extends JFrame {
         //MiddleMeetModel mm = new MiddleMeetModel();
         MiddleMeetController mc = new MiddleMeetController(this);
 
-        ImageIcon icon = new ImageIcon(getClass().getResource("/img/intro.jpg"));
+        ImageIcon icon = new ImageIcon(getClass().getResource("img/intro.jpg"));
 
 
         //create panels
@@ -128,7 +128,7 @@ public class MiddleMeetView extends JFrame {
 
     public void setIcon(ImageIcon icon) {
         this.icon = icon;
-        repaint();
+        this.icon.getImage().flush();
         L3.setIcon(icon);
     }
 
